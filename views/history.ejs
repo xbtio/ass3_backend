@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User History</title>
+    <link rel="stylesheet" href="/history.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="color: #ffffff; background-color: #263238; ">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100">
+        <a class="navbar-brand" href="/main/<%- user[0].user %>">Healthy Weather</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/history/<%- user[0].user %>">History</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/login">Login again</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul>
+        <h1>User History</h1>
+        <% for (let i = 0; i < user.length; i++) { %>
+            <% const historyItem = user[i].history; %>
+            <li style="margin-bottom: 7px;">
+                <strong>Location:</strong> <%- historyItem.location %><br>
+
+                <% if(historyItem.date) { %>
+                    <strong>Date:</strong> <%- historyItem.date %><br>
+                <% } else { %>
+                    <strong>Date:</strong> Unknown data <br>
+                <% } %>
+
+                <% if(historyItem.weather) { %>
+                    <strong>Weather:</strong> <%- historyItem.weather.weather[0].description %> <%- historyItem.weather.main.temp %> C°<br>
+                <% } else { %>
+                    <strong>Weather:</strong> Unknown data <br>
+                <% } %>
+
+                <% if(historyItem.airQuality && historyItem.airQuality.indexes) { %>
+                    <strong>Air Quality:</strong> <%- historyItem.airQuality.indexes[0].category %> <%- historyItem.airQuality.indexes[0].aqi %><br>
+                <% } else { %>
+                    <strong>Air Quality:</strong> Unknown data<br>
+                <% } %>
+
+                <% if(historyItem.solarRadiation) { %>
+                    <strong>Solar Radiation:</strong> <%- historyItem.solarRadiation.daily.shortwave_radiation_sum[0] %>
+                <% } else { %>
+                    <strong>Solar Radiation:</strong> Unknown data<br>
+                <% } %>
+            </li>
+        <% } %>
+
+        
+    </ul>
+
+    <footer class="bg-body-tertiary text-center">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            Yernar Koshkarbay SE-2205
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

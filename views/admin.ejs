@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Panel</h2>
+
+        <form id="addUserForm" action="/admin/users" method="POST">
+            <div class="form-group">
+                <label for="addUsername">Username:</label>
+                <input type="text" id="addUsername" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="addPassword">Password:</label>
+                <input type="password" id="addPassword" name="password" required>
+            </div>
+            <button type="submit">Add User</button>
+        </form>
+
+        <h3>Users</h3>
+        <ul>
+            <% users.forEach(user => { %>
+                <li>
+                    <%= user.username %>
+                    <form class="update-user-form" data-user-id="<%= user._id %>">
+                        <div class="form-group">
+                            <label for="editUsername_<%= user._id %>">New Username:</label>
+                            <input type="text" id="editUsername_<%= user._id %>" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPassword_<%= user._id %>">New Password:</label>
+                            <input type="password" id="editPassword_<%= user._id %>" name="password" required>
+                        </div>
+                        <button type="submit">Update</button>
+                    </form>
+                    <button class="delete-user-button" data-user-id="<%= user._id %>">Delete</button>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+
+    <div style="margin-top: 10px; display: flex;  justify-content: center;">
+        <footer>Yernar Koshkarbay SE-2205</footer>
+    </div>
+
+    <script src="/admin.js"></script>
+</body>
+</html>

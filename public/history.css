@@ -1,0 +1,19 @@
+body {
+    width: 99%;
+    background-color: #263238;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    color: #4d11c6;
+}
+
+
+
+strong {
+    font-weight: bold;
+}
+
+li > br {
+    display: none;
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style_main.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100">
+        <a class="navbar-brand" href="#">Healthy Weather</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/history/<%= userId %>">History</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/login">Login again</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="wrapper">
+
+        <form id="location-form">
+            <div class="form__group field">
+                <input type="input" class="form__field" placeholder="City" name="City" id='location-input' required />
+                <label for="name" class="form__label">City</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+
+        <div class="widget-container">
+
+            <div class="top-left">
+                <h1 class="city" id="city">Weather App</h1>
+                <h2 id="day">Day</h2>
+                <h3 id="date">Month, Day Year</h3>
+                <p class="geo"></p>
+            </div>
+            <div class="top-right">
+                <h1 id="weather-status">Weather Status</h1>
+                <div icon="sunny" data-label="Sunny" style="display: none; scale: 50%; bottom: 123px; right: 42px;"
+                    id='sunny'>
+                    <span class="sun"></span>
+                </div>
+
+                <div icon="cloudy" data-label="Perfect" style="display: none; scale: 50%; bottom: 123px; right: 42px;"
+                    id='cloudy'>
+                    <span class="cloud"></span>
+                    <span class="cloud"></span>
+                </div>
+
+                <div icon="snowy" data-label="Chilly" style="display: none; scale: 50%; bottom: 123px; right: 42px;"
+                    id='snowy'>
+                    <span class="snowman"></span>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div icon="stormy" data-label="Soggy" style="display: none; scale: 50%; bottom: 123px; right: 42px;"
+                    id='stormy'>
+                    <span class="cloud"></span>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div icon="supermoon" data-label="Cool!" style="display: none; scale: 50%; bottom: 123px; right: 42px;"
+                    id='supermoon'>
+                    <span class="moon"></span>
+                    <span class="meteor"></span>
+                </div>
+            </div>
+            <div class="horizontal-half-divider"></div>
+            <div class="bottom-left">
+                <h1 id="temperature">0</h1>
+                <h2 id="celsius">&degC</h2>
+            </div>
+            <div class="vertical-half-divider"></div>
+            <div class="bottom-right">
+                <div class="other-details-key">
+                    <p>Wind Speed</p>
+                    <p>Humidity</p>
+                    <p>Pressure</p>
+                    <p>Feels like</p>
+                    <p>Description</p>
+                </div>
+                <div class="other-details-values">
+                    <p class="windspeed" id='windspeed'>0 Km/h</p>
+                    <p class="humidity" id='humidity'>0 %</p>
+                    <p class="pressure" id='pressure'>0 hPa</p>
+                    <p class="sunrise-time" id='feelslike'>0</p>
+                    <p class="sunset-time" id='description'>0</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <a href="/history/<%= userId %>" class="btn btn-primary mt-4" id='view-history-btn'>View History</a>
+        </div>
+
+
+        <div class="top-left">Air Quality</div>
+        <div class="progress">
+            <div class="bar" id="AQ"></div>
+        </div>
+
+        <div class="top-left">Solar Radiation</div>
+        <div class="progress">
+            <div class="bar" id="SR"></div>
+        </div>
+
+        <div class="top-left">Map</div>
+        <div id="map"></div>
+    </div>
+
+    <footer class="bg-body-tertiary text-center">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            Yernar Koshkarbay SE-2205
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/weather-logic.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPWi4QzyfbxagfFWZxgYzaiaKD2OIO8yM&callback=initMap"></script>
+    <script src="/map.js"></script>
+</body>
+
+</html>

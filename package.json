@@ -1,0 +1,32 @@
+{
+  "name": "healthy-weather",
+  "version": "1.0.0",
+  "description": "Installing project:\r 1) Download project into your local storage\r 2) open this project in terminal\r 3) write \"node ./root.js\"",
+  "main": "root.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node root.js"
+  },
+  "keywords": [],
+  "author": "yernar",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.1.1",
+    "nodemon": "^3.0.3"
+  },
+  "engines": {
+    "node": "21.4.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MakyKari/Assignment3-Web2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MakyKari/Assignment3-Web2/issues"
+  },
+  "homepage": "https://github.com/MakyKari/Assignment3-Web2#readme"
+}
